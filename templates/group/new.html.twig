@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Group index{% endblock %}
+
+{% block body %}
+    {% include('_partials/nav.html.twig') %}
+
+    <div class="container is-widescreen">
+
+        <p>&nbsp;</p>
+
+        <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="{{ path('route_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ path('route_group_index') }}">Groups</a></li>
+                <li class="is-active"><a aria-current="page">Create new group</a></li>
+            </ul>
+        </nav>
+
+        <h1 class="title is-1">
+            Create new group
+        </h1>
+
+        {{ include('group/_form.html.twig') }}
+
+    </div>
+
+{% endblock %}

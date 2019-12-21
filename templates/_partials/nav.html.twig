@@ -1,0 +1,38 @@
+<nav class="navbar is-warning">
+    <div class="navbar-brand">
+        <a class="navbar-item has-text-weight-bold" href={{ path('route_dashboard') }}>
+            PLAYLISTICO
+        </a>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item"
+               href="{{ path('route_group_index') }}"
+            >
+                Groups
+            </a>
+
+            <a class="navbar-item" href="{{ path('route_channel_index') }}">
+                Channels
+            </a>
+
+            <a class="navbar-item" href="{{ path('route_dashboard') }}">
+                Playlists
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="field">
+                    <div class="control">
+                        <a class="button is-dark" href="{{ path('route_logout') }}">
+                            <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

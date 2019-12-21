@@ -3,7 +3,18 @@
 Framework: Symfony 5.x
 
 ## Setup:
-0. php bin/console doctrine:database:create
-1. (optional) php bin/console make:migration
-2. php bin/console doctrine:migrations:migrate
-3. php bin/console doctrine:fixtures:load --append
+### Create datebase
+- php bin/console doctrine:database:create
+
+### Make User
+(https://symfony.com/doc/current/security.html)
+- php bin/console make:user --use-argon2 User
+- php bin/console make:migration
+- php bin/console doctrine:migrations:migrate
+- php bin/console make:fixtures
+- php bin/console doctrine:fixtures:load --append
+
+### Login Form Auth
+(https://symfony.com/doc/current/security/form_login_setup.html)
+- php bin/console make:auth
+

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Channel{% endblock %}
+
+{% block body %}
+    {% include('_partials/nav.html.twig') %}
+
+    <div class="container is-widescreen">
+
+        <p>&nbsp;</p>
+
+        <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="{{ path('route_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ path('route_channel_index') }}">Channels</a></li>
+                <li class="is-active"><a aria-current="page">Show channel «{{ channel.title }}»</a></li>
+            </ul>
+        </nav>
+
+        <h1 class="title is-1">
+            Show channel «{{ channel.title }}»
+        </h1>
+
+        <a class="link button" href="{{ path('route_channel_edit', {'id': group.id}) }}">Edit this channel</a>
+
+        <p>&nbsp;</p>
+
+        <table class="table is-fullwidth is-striped">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ channel.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ channel.title }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ channel.url }}</td>
+            </tr>
+            <tr>
+                <th>Group_id</th>
+                <td>{{ channel.groupId }}</td>
+            </tr>
+            <tr>
+                <th>Logo_filename</th>
+                <td>{{ channel.logoFilename }}</td>
+            </tr>
+            <tr>
+                <th>Tvg_id</th>
+                <td>{{ channel.tvgId }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ channel.createdAt ? channel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ channel.note }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>&nbsp;</p>
+
+        {{ include('channel/_delete_form.html.twig') }}
+
+    </div>
+{% endblock %}

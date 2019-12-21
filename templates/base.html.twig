@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('assets/bulma/0.8.0/bulma.css') }}"/>
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+
+        <script defer src="{{ asset('assets/fontawesome/5.10.2/js/fontawesome.min.js') }}"></script>
+        <script defer src="{{ asset('assets/fontawesome/5.10.2/js/solid.min.js') }}"></script>
     </body>
 </html>
