@@ -22,9 +22,13 @@ Framework: Symfony 5.x
 - php bin/console make:entity Group
 - php bin/console make:crud Group
 
+### Create Channel
+- php bin/console make:entity Channel
+- php bin/console make:crud Channel
 
 
 
 
+---
 ## Useful links:
 - http://xmtvplayer.com/build-m3u-file

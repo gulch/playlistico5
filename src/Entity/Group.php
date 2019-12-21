@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,9 +28,15 @@ class Group
      */
     private $created_at;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Channel", mappedBy="group_id")
+     */
+    private $channels;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->channels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,6 +64,37 @@ class Group
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Channel[]
+     */
+    public function getChannels(): Collection
+    {
+        return $this->channels;
+    }
+
+    public function addChannel(Channel $channel): self
+    {
+        if (!$this->channels->contains($channel)) {
+            $this->channels[] = $channel;
+            $channel->setGroupId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChannel(Channel $channel): self
+    {
+        if ($this->channels->contains($channel)) {
+            $this->channels->removeElement($channel);
+            // set the owning side to null (unless already changed)
+            if ($channel->getGroupId() === $this) {
+                $channel->setGroupId(null);
+            }
+        }
 
         return $this;
     }
