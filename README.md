@@ -18,3 +18,13 @@ Framework: Symfony 5.x
 (https://symfony.com/doc/current/security/form_login_setup.html)
 - php bin/console make:auth
 
+### Create Group
+- php bin/console make:entity Group
+- php bin/console make:crud Group
+
+
+
+
+
+## Useful links:
+- http://xmtvplayer.com/build-m3u-file
