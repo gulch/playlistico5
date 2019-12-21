@@ -16,7 +16,7 @@ class ChannelType extends AbstractType
         $builder
             ->add('title')
             ->add('url')
-            ->add('channel_group', EntityType::class, [
+            ->add('group', EntityType::class, [
                 'class' => Group::class,
                 'choice_label' => 'title',
                 'placeholder' => 'Choose an group...',

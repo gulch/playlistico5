@@ -21,7 +21,7 @@
             Show channel «{{ channel.title }}»
         </h1>
 
-        <a class="link button" href="{{ path('route_channel_edit', {'id': group.id}) }}">Edit this channel</a>
+        <a class="link button" href="{{ path('route_channel_edit', {'id': channel.id}) }}">Edit this channel</a>
 
         <p>&nbsp;</p>
 
@@ -40,8 +40,12 @@
                 <td>{{ channel.url }}</td>
             </tr>
             <tr>
-                <th>Group_id</th>
-                <td>{{ channel.groupId }}</td>
+                <th>Group</th>
+                <td>
+                    <a href="{{ path('route_group_show', {'id': channel.group.id}) }}">
+                        {{ channel.group.title }}
+                    </a>
+                </td>
             </tr>
             <tr>
                 <th>Logo_filename</th>

@@ -3,12 +3,12 @@
 {# Widgets #}
 
 {%- block form_widget_simple -%}
-    {% spaceless %}
+
         {%- if type is not defined or type not in ['file', 'hidden'] -%}
             {%- set attr = attr|merge({class: (attr.class|default('') ~ ' input')|trim}) -%}
         {%- endif -%}
         {%- set size_class = '' -%}
-        {%- for size in ['is-small', 'is-medium', 'is-large'] if size in form.vars.attr.class|default('') -%}
+        {%- for size in ['is-small', 'is-medium', 'is-large', ''] -%}
             {%- set size_class = size -%}
         {%- endfor -%}
         {%- set widget_icon = attribute(form.vars, 'bulma_icon')|default(false) -%}
@@ -21,13 +21,12 @@
             {%- endif -%}
             {{- block('form_errors') -}}
         </div>
-    {% endspaceless %}
 {%- endblock form_widget_simple %}
 
 {%- block choice_widget_collapsed -%}
-    {% spaceless %}
+
         {%- set size_class = '' -%}
-        {%- for size in ['is-small', 'is-medium', 'is-large'] if size in form.vars.attr.class|default('') -%}
+        {%- for size in ['is-small', 'is-medium', 'is-large', ''] -%}
             {%- set size_class = size -%}
         {%- endfor -%}
         {%- set is_multiple_class = multiple ? ' is-multiple' : '' -%}
@@ -37,7 +36,7 @@
         </span>
             {{- block('form_errors') -}}
         </div>
-    {% endspaceless %}
+
 {%- endblock choice_widget_collapsed -%}
 
 {%- block choice_widget_expanded -%}
@@ -130,8 +129,7 @@
 
 {%- block button_widget -%}
     {%- set btn_class = 'is-link' -%}
-    {%- for color in [ 'is-primary', 'is-info', 'is-success', 'is-warning', 'is-danger' ]
-    if color in attr.class|default('') -%}
+    {%- for color in [ 'is-primary', 'is-info', 'is-success', 'is-warning', 'is-danger' ] -%}
         {%- set btn_class = color -%}
     {%- endfor -%}
     {%- set attr = attr|merge({class: (attr.class|default('') ~ ' button ' ~ btn_class)|trim}) -%}

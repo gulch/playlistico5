@@ -44,7 +44,7 @@ class Channel
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Group", inversedBy="channels")
      */
-    private $group_id;
+    private $group;
 
     /**
      * @ORM\Column(type="datetime")
@@ -121,14 +121,14 @@ class Channel
         return $this;
     }
 
-    public function getGroupId(): ?Group
+    public function getGroup(): ?Group
     {
-        return $this->group_id;
+        return $this->group;
     }
 
-    public function setGroupId(?Group $group_id): self
+    public function setGroup(?Group $group): self
     {
-        $this->group_id = $group_id;
+        $this->group = $group;
 
         return $this;
     }
