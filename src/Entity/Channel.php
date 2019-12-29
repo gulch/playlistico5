@@ -58,6 +58,11 @@ class Channel
      */
     private $playlists;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $extvlcopt;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
@@ -177,6 +182,18 @@ class Channel
             $this->playlists->removeElement($playlist);
             $playlist->removeChannel($this);
         }
+
+        return $this;
+    }
+
+    public function getExtvlcopt(): ?string
+    {
+        return $this->extvlcopt;
+    }
+
+    public function setExtvlcopt(?string $extvlcopt): self
+    {
+        $this->extvlcopt = $extvlcopt;
 
         return $this;
     }

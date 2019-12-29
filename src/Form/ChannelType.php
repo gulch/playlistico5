@@ -7,6 +7,7 @@ use App\Entity\Group;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -17,11 +18,15 @@ class ChannelType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('url')
             ->add('group', EntityType::class, [
                 'class' => Group::class,
                 'choice_label' => 'title',
                 'placeholder' => 'Choose an group...',
+            ])
+            ->add('url')
+            ->add('extvlcopt', TextType::class, [
+                'label' => 'EXTVLCOPT',
+                'required' => false,
             ])
             ->add('tvg_id')
             ->add('note')
