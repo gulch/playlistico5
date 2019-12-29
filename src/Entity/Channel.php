@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,9 +53,15 @@ class Channel
      */
     private $created_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Playlist", mappedBy="channels")
+     */
+    private $playlists;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->playlists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -141,6 +149,34 @@ class Channel
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Playlist[]
+     */
+    public function getPlaylists(): Collection
+    {
+        return $this->playlists;
+    }
+
+    public function addPlaylist(Playlist $playlist): self
+    {
+        if (!$this->playlists->contains($playlist)) {
+            $this->playlists[] = $playlist;
+            $playlist->addChannel($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlaylist(Playlist $playlist): self
+    {
+        if ($this->playlists->contains($playlist)) {
+            $this->playlists->removeElement($playlist);
+            $playlist->removeChannel($this);
+        }
 
         return $this;
     }

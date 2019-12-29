@@ -26,7 +26,9 @@ Framework: Symfony 5.x
 - php bin/console make:entity Channel
 - php bin/console make:crud Channel
 
-
+### Create Playlist
+- php bin/console make:entity Playlist
+- php bin/console make:crud Playlist
 
 
 ---
