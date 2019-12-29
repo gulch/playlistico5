@@ -27,6 +27,8 @@ class PlaylistController extends AbstractController
 
     /**
      * @Route("/new", name="route_playlist_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -39,7 +41,7 @@ class PlaylistController extends AbstractController
             $entityManager->persist($playlist);
             $entityManager->flush();
 
-            return $this->redirectToRoute('playlist_index');
+            return $this->redirectToRoute('route_playlist_index');
         }
 
         return $this->render('playlist/new.html.twig', [
