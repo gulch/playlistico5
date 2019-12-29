@@ -22,13 +22,12 @@
 
         <p>&nbsp;</p>
 
-        <table class="table is-fullwidth is-striped">
+        <table class="table is-fullwidth is-striped is-hoverable">
 
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Url</th>
                 <th>Group</th>
                 <th>Logo</th>
                 <th>Tvg ID</th>
@@ -42,16 +41,25 @@
                 <tr>
                     <td>{{ channel.id }}</td>
                     <td>{{ channel.title }}</td>
-                    <td>{{ channel.url }}</td>
                     <td>
                         <a href="{{ path('route_group_show', {'id': channel.group.id}) }}">
                             {{ channel.group.title }}
                         </a>
                     </td>
-                    <td>{{ channel.logoFilename }}</td>
+                    <td>
+                        {% if channel.logoFilename %}
+                            <img src="{{ asset('uploads/images/' ~ channel.logoFilename) }}"
+                                 width="64px"
+                            >
+                        {% endif %}
+                    </td>
                     <td>{{ channel.tvgId }}</td>
                     <td>{{ channel.createdAt ? channel.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ channel.note }}</td>
+                    <td>
+                        {% if channel.note %}
+                            +
+                        {% endif %}
+                    </td>
                     <td>
                         <div class="buttons has-addons">
                             <a href="{{ path('route_channel_show', {'id': channel.id}) }}"
