@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Playlist{% endblock %}
+
+{% block body %}
+
+    {% include('_partials/nav.html.twig') %}
+
+    <div class="container is-widescreen">
+
+        <p>&nbsp;</p>
+
+        <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="{{ path('route_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ path('route_playlist_index') }}">Playlists</a></li>
+                <li class="is-active"><a aria-current="page">Show playlist «{{ playlist.title }}»</a></li>
+            </ul>
+        </nav>
+
+        <h1 class="title is-1">
+            Show playlist «{{ playlist.title }}»
+        </h1>
+
+        <a class="link button" href="{{ path('route_playlist_edit', {'id': playlist.id}) }}">Edit this playlist</a>
+
+        <p>&nbsp;</p>
+
+        <table class="table is-fullwidth is-striped">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ playlist.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ playlist.title }}</td>
+            </tr>
+            <tr>
+                <th>Notes</th>
+                <td>{{ playlist.notes }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ playlist.createdAt ? playlist.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>&nbsp;</p>
+
+        {{ include('playlist/_delete_form.html.twig') }}
+
+
+    </div>
+{% endblock %}

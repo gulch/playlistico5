@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+<div class="field is-grouped">
+    <div class="control">
+        <button class="button is-link">{{ button_label|default('Save') }}</button>
+    </div>
+    <div class="control">
+        <button onclick="window.history.back()" class="button is-light">Cancel</button>
+    </div>
+</div>
+{{ form_end(form) }}
