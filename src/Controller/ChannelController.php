@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Channel;
 use App\Form\ChannelType;
 use App\Repository\ChannelRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,14 +29,25 @@ class ChannelController extends AbstractController
 
     /**
      * @Route("/new", name="route_channel_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param FileUploader $fileUploader
+     * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $channel = new Channel();
         $form = $this->createForm(ChannelType::class, $channel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UploadedFile $brochureFile */
+            $imageFile = $form['logo_filename']->getData();
+            if ($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile);
+                $channel->setLogoFilename($imageFileName);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($channel);
             $entityManager->flush();
@@ -60,13 +73,25 @@ class ChannelController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="route_channel_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Channel $channel
+     * @param FileUploader $fileUploader
+     * @return Response
      */
-    public function edit(Request $request, Channel $channel): Response
+    public function edit(Request $request, Channel $channel, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(ChannelType::class, $channel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UploadedFile $brochureFile */
+            $imageFile = $form['logo_filename']->getData();
+            if ($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile);
+                $channel->setLogoFilename($imageFileName);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('route_channel_index');

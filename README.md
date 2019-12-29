@@ -34,3 +34,4 @@ Framework: Symfony 5.x
 ---
 ## Useful links:
 - http://xmtvplayer.com/build-m3u-file
+- https://epg.iptvx.one
