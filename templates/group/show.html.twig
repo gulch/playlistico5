@@ -22,7 +22,8 @@
             Show group «{{ group.title }}»
         </h1>
 
-        <a class="link button" href="{{ path('route_group_edit', {'id': group.id}) }}">Edit this group</a>
+        {% include '_partials/edit_link_button.html.twig' with {'route_path': 'route_group_edit', 'id': group.id} only %}
+        {% include '_partials/delete_from_button.html.twig' with {'route_path': 'route_group_delete', 'id': group.id} only %}
 
         <p>&nbsp;</p>
 
@@ -42,11 +43,6 @@
             </tr>
             </tbody>
         </table>
-
-        <p>&nbsp;</p>
-
-        {{ include('group/_delete_form.html.twig') }}
-
 
     </div>
 {% endblock %}

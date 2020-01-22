@@ -22,7 +22,8 @@
             Show playlist «{{ playlist.title }}»
         </h1>
 
-        <a class="link button" href="{{ path('route_playlist_edit', {'id': playlist.id}) }}">Edit this playlist</a>
+        {% include '_partials/edit_link_button.html.twig' with {'route_path': 'route_playlist_edit', 'id': playlist.id} only %}
+        {% include '_partials/delete_from_button.html.twig' with {'route_path': 'route_playlist_delete', 'id': playlist.id} only %}
 
         <p>&nbsp;</p>
 
@@ -46,11 +47,6 @@
             </tr>
             </tbody>
         </table>
-
-        <p>&nbsp;</p>
-
-        {{ include('playlist/_delete_form.html.twig') }}
-
 
     </div>
 {% endblock %}
