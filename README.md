@@ -3,7 +3,7 @@
 Framework: Symfony 5.x
 
 ## Setup:
-### Create datebase
+### Create database
 - php bin/console doctrine:database:create
 
 ### Make User
